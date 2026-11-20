@@ -1,0 +1,21 @@
+GOAL: Plan a one-day trip from Pune to Lonavala under ₹3,000
+INITIAL PLAN: ['weather', 'places', 'transport', 'summary']
+
+Step 1 | Task: weather
+  Thought:     I assumed sunny weather. Verify before choosing places.
+  Action:      check_weather('Lonavala')
+  Observation: sunny
+
+Step 2 | Task: places
+  Thought:     Weather is sunny, so choose outdoor places.
+  Action:      find_places('outdoor')
+  Observation: ['Tiger Point', 'Bhushi Dam']
+
+Step 3 | Task: transport
+  Thought:     Book transport to the first chosen place.
+  Action:      book_cab('Tiger Point')
+  Observation: Cab booked to Tiger Point
+
+Step 4 | Task: summary
+  Thought:     All sub-tasks done; summarise.
+  Final:       ['Tiger Point', 'Bhushi Dam'] via Cab booked to Tiger Point, mode=outdoor
