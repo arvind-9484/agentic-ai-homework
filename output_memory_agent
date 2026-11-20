@@ -1,0 +1,66 @@
+============================================================
+AGENT A: Baseline (no memory, no tools)
+============================================================
+  What is my name?                         -> I don't know.                [FAIL]
+  When is my exam?                         -> I don't know.                [FAIL]
+  What is 15% of my budget?                -> I don't know.                [FAIL]
+  What is the capital of Maharashtra?      -> I don't know.                [FAIL]
+  Calculate 2**10 + 7                      -> I don't know.                [FAIL]
+============================================================
+AGENT B: Short-term memory + tools
+============================================================
+  What is my name?                         -> I don't know.                [FAIL]
+  When is my exam?                         -> I don't know.                [FAIL]
+  What is 15% of my budget?                -> I don't know.                [FAIL]
+  What is the capital of Maharashtra?      -> Mumbai is the capital of Maharashtra. [PASS]
+  Calculate 2**10 + 7                      -> 1031                         [PASS]
+============================================================
+AGENT C: Short-term + long-term + tools
+============================================================
+    Thought:    Understand 'My name is Arvind.'
+    Thought:    Understand 'My exam is on 5 December.'
+    Thought:    Understand 'My budget is 3000 rupees.'
+    Thought:    Understand 'I prefer short answers.'
+    Thought:    Understand 'What is 2+3?'
+    Action:     run_python('2+3')
+    Observation:5
+    Thought:    Understand 'What is 10*4?'
+    Action:     run_python('10*4')
+    Observation:40
+    Thought:    Understand 'Hello there.'
+
+  Q: What is my name?
+    Thought:    Understand 'What is my name?'
+    Memory:     LTM hit (0.71, 'My name is Arvind.')
+  A: My name is Arvind   [PASS]
+
+  Q: When is my exam?
+    Thought:    Understand 'When is my exam?'
+    Memory:     LTM hit (0.58, 'My exam is on 5 December.')
+  A: My exam is on 5 December   [PASS]
+
+  Q: What is 15% of my budget?
+    Thought:    Understand 'What is 15% of my budget?'
+    Memory:     LTM hit (0.58, 'My budget is 3000 rupees.')
+    Action:     run_python('15/100*3000')
+    Observation:450
+  A: 450   [PASS]
+
+  Q: What is the capital of Maharashtra?
+    Thought:    Understand 'What is the capital of Maharashtra?'
+    Action:     web_search('the capital of maharashtra')
+    Observation:Mumbai is the capital of Maharashtra.
+  A: Mumbai is the capital of Maharashtra.   [PASS]
+
+  Q: Calculate 2**10 + 7
+    Thought:    Understand 'Calculate 2**10 + 7'
+    Action:     run_python('2**10 + 7')
+    Observation:1031
+  A: 1031   [PASS]
+
+============================================================
+SCOREBOARD
+============================================================
+  A: Baseline (no memory, no tools)      0/5
+  B: Short-term memory + tools           2/5
+  C: Short-term + long-term + tools      5/5
