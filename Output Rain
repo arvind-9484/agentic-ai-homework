@@ -1,0 +1,30 @@
+GOAL: Plan a one-day trip from Pune to Lonavala under ₹3,000
+INITIAL PLAN: ['weather', 'places', 'transport', 'summary']
+
+Step 1 | Task: weather
+  Thought:     I assumed sunny weather. Verify before choosing places.
+  Action:      check_weather('Lonavala')
+  Observation: rain
+  [REPLAN] Assumption 'sunny' violated.
+           Old remaining plan: ['places', 'transport', 'summary']
+           New plan:           ['places', 'budget', 'transport', 'summary']
+
+
+Step 2 | Task: places
+  Thought:     Weather is rain, so choose indoor places.
+  Action:      find_places('indoor')
+  Observation: ['Karla Caves', 'Wax Museum']
+
+Step 3 | Task: budget
+  Thought:     Check that the indoor plan fits the ₹3,000 budget.
+  Action:      check_budget('indoor')
+  Observation: {'cost': 2800, 'ok': True}
+
+Step 4 | Task: transport
+  Thought:     Book transport to the first chosen place.
+  Action:      book_cab('Karla Caves')
+  Observation: Cab booked to Karla Caves
+
+Step 5 | Task: summary
+  Thought:     All sub-tasks done; summarise.
+  Final:       ['Karla Caves', 'Wax Museum'] via Cab booked to Karla Caves, mode=indoor
